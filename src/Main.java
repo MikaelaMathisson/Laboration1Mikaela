@@ -80,7 +80,7 @@ public class Main {
 
                 Arrays.sort(sortedElPriser);
 
-                System.out.println("Elpriser sorterade i stigande ordning");
+                System.out.println("Elpriser sorterade i stigande ordning:");
                 for (int i = 0; i < sortedElPriser.length; i++) {
                     System.out.printf("Timme %02d-%02d: %d öre%n", i, (i + 1) % 24, sortedElPriser[i]);
                 }
@@ -88,8 +88,23 @@ public class Main {
             else if ("4".equals(input)) {
                 //Do option 4
                 System.out.println("Du har valt: "+ input);
-            }
-            else if ("e".equalsIgnoreCase(input)) {
+
+                int bestStartHour = 0;
+                int minTotalPris = Integer.MAX_VALUE;
+
+                for (int i = 0; i < 24; i++) {
+                    int currentTotal = 0;
+                    for (int j = 0; j < 4; j++) {
+                        currentTotal += elPriser[(i + j) % 24];
+                    }
+                    if (currentTotal < minTotalPris) {
+                        minTotalPris = currentTotal;
+                        bestStartHour = i;
+                    }
+                }
+                System.out.println(" Den billigaste 4-timmarsperioden är mellan " + String.format("%02d-%02d", bestStartHour, (bestStartHour + 4) % 24) +
+                        " med ett totalt pris av " + minTotalPris + " öre.");
+            } else if ("e".equalsIgnoreCase(input)) {
                 //Close menu and end run
                 System.out.println("Du har valt att avsluta. " +
                         "Ha en fin dag!");
