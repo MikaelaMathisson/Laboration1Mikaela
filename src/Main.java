@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -74,6 +75,15 @@ public class Main {
             else if ("3".equals(input)) {
                 //Do option 3
                 System.out.println("Du har valt: "+ input);
+
+                int[] sortedElPriser = elPriser.clone();
+
+                Arrays.sort(sortedElPriser);
+
+                System.out.println("Elpriser sorterade i stigande ordning");
+                for (int i = 0; i < sortedElPriser.length; i++) {
+                    System.out.printf("Timme %02d-%02d: %d öre%n", i, (i + 1) % 24, sortedElPriser[i]);
+                }
             }
             else if ("4".equals(input)) {
                 //Do option 4
